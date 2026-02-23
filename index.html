@@ -39,10 +39,26 @@
         </div>
     </section>
     <section>
-        <div class="container">
-            <h2 class="section__title">Top Movies</h2>
+        <div class="card__container">
+            <div class="movie__header">
+                <h2 class="section__title">Movies</h2>
+                <select id="filter">
+                    <option value="Alphabetical A to Z">A to Z</option>
+                    <option value="Alphabetical Z to A">Z to A</option>
+                    <option value="Oldest to Newest">Oldest to Newest</option>
+                    <option value="Newest to Oldest">Newest to Oldest</option>
+                </select>
+            </div>
             <div id="moviesContainer" class="movies-container">
-                <!-- Movie cards will be dynamically inserted here -->
+                <div class="row">
+                    <div class="movie-card">
+                        <figure>
+                            <img src="movie1.jpg" alt="Movie 1" class="movie-card__image">
+                        </figure>
+                        <h3 class="movie-card__title">Movie Title</h3>
+                        <p class="movie-card__year">Release Year: 2023</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
