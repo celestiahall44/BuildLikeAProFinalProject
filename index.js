@@ -1,4 +1,4 @@
-const moviesListEl = document.querySelector(".movie-list");
+const moviesListEl = document.querySelector(".movie");
 
 async function main() {
     const movies = await fetch ("https://omdbapi.com/?s=fast&apikey=1026992b");
