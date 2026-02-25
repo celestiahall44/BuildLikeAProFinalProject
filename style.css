@@ -307,3 +307,14 @@ footer {
     color: #ce5829ec;
 }
 
+@media (max-width: 600px) {
+  .container {
+    padding: 8px;
+  }
+  .movie-card {
+    font-size: 0.95rem;
+  }
+  .movie-poster {
+    height: 200px;
+  }
+}
