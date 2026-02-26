@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScriptFinal</title>
     <link rel="stylesheet" href="style.css">
-    <script src="index.js"></script>
 </head>
 <body>
     <section id="header">
@@ -49,21 +48,9 @@
                     <option value="Newest to Oldest">Newest to Oldest</option>
                 </select>
             </div>
-            <div id="moviesContainer" class="movies-container">
-                <div class="row">
-                    <div class="movie-card">
-                        <img class="movie-poster" src="${movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/300x450?text=No+Image'}" alt="${movie.Title} poster" />
-                        <div class="movie-info">
-                            <div class="movie-title">${movie.Title}</div>
-                            <div class="movie-year">${movie.Year}</div>
-                            <div class="movie-desc">${movie.Plot ? movie.Plot : ''}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="moviesContainer" class="movies-container"></div>
         </div>
-    </section>
-    
+    </section> 
 <footer>
     <div class="footer__container">
         <div class="row footer__row">
@@ -84,5 +71,6 @@
             <div class="footer__copyright">Copyright © 2026 Celestia Hall</div>
         </div>
     </footer>
+    <script src="index.js"></script>
 </body>
 </html>

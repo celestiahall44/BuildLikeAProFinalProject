@@ -1,13 +1,13 @@
 const OMDB_API_KEY = "1026992b";
-const OMDB_API_URL = "http://www.omdbapi.com/?i=tt3896198&apikey=1026992b";
+const OMDB_API_URL = "http://www.omdbapi.com";
 
-const moviesGrid = document.getElementById('moviesGrid');
+const moviesContainer = document.getElementById('moviesContainer');
 const searchInput = document.getElementById('searchInput');
 
 function renderMovies(filteredMovies) {
-  moviesGrid.innerHTML = '';
+  moviesContainer.innerHTML = '';
   if (filteredMovies.length === 0) {
-    moviesGrid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#aaa;">No movies found.</p>';
+    moviesContainer.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#aaa;">No movies found.</p>';
     return;
   }
   filteredMovies.forEach(movie => {
@@ -21,12 +21,12 @@ function renderMovies(filteredMovies) {
         <div class="movie-desc">${movie.Plot ? movie.Plot : ''}</div>
       </div>
     `;
-    moviesGrid.appendChild(card);
+    moviesContainer.appendChild(card);
   });
 }
 
 async function fetchMovies(query) {
-  moviesGrid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#aaa;">Loading...</p>';
+  moviesContainer.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#aaa;">Loading...</p>';
   try {
     const res = await fetch(`${OMDB_API_URL}?apikey=${OMDB_API_KEY}&s=${encodeURIComponent(query)}`);
     const data = await res.json();
@@ -42,7 +42,7 @@ async function fetchMovies(query) {
       renderMovies([]);
     }
   } catch (err) {
-    moviesGrid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#f66;">Error loading movies.</p>';
+    moviesContainer.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#f66;">Error loading movies.</p>';
   }
 }
 
@@ -51,9 +51,12 @@ function handleSearch() {
   if (query.length > 0) {
     fetchMovies(query);
   } else {
-    moviesGrid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#aaa;">Start typing to search for movies.</p>';
+    moviesContainer.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#aaa;">Start typing to search for movies.</p>';
   }
 }
 
-searchInput.addEventListener('input', handleSearch);
+const searchButton = document.getElementById('searchButton');
+if (searchButton) {
+  searchButton.addEventListener('click', handleSearch);
+}
 
