@@ -3,8 +3,10 @@ const OMDB_API_URL = "http://www.omdbapi.com";
 
 const moviesContainer = document.getElementById('moviesContainer');
 const searchInput = document.getElementById('searchInput');
+let currentMovies = [];
 
 function renderMovies(filteredMovies) {
+  currentMovies = filteredMovies;
   moviesContainer.innerHTML = '';
   if (filteredMovies.length === 0) {
     moviesContainer.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#aaa;">No movies found.</p>';
@@ -41,6 +43,24 @@ async function fetchMovies(query) {
     } else {
       renderMovies([]);
     }
+    
+  const filterSelect = document.getElementById('filter');
+  if (filterSelect) {
+    filterSelect.addEventListener('change', function () {
+      let movies = [...currentMovies];
+      const value = filterSelect.value;
+      if (value === "Alphabetical A to Z") {
+        movies.sort((a, b) => a.Title.localeCompare(b.Title));
+      } else if (value === "Alphabetical Z to A") {
+        movies.sort((a, b) => b.Title.localeCompare(a.Title));
+      } else if (value === "Oldest to Newest") {
+        movies.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
+      } else if (value === "Newest to Oldest") {
+        movies.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
+      }
+      renderMovies(movies);
+    });
+  }
   } catch (err) {
     moviesContainer.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#f66;">Error loading movies.</p>';
   }
