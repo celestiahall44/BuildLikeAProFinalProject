@@ -1,5 +1,5 @@
 const OMDB_API_KEY = "1026992b";
-const OMDB_API_URL = "http://www.omdbapi.com";
+const OMDB_API_URL = "https://www.omdbapi.com";
 
 const moviesContainer = document.getElementById('moviesContainer');
 const searchInput = document.getElementById('searchInput');
